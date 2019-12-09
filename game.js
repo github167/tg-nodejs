@@ -9,7 +9,7 @@ const gameName = process.env.TELEGRAM_GAMENAME || 'YOUR_TELEGRAM_GAMENAME';
 let url = process.env.URL || 'https://<PUBLIC-URL>';
 const port = process.env.PORT || 8080;
 
-const TelegramBot = require('../..');
+const TelegramBot = require('node-telegram-bot-api');
 const express = require('express');
 const path = require('path');
 

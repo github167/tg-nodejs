@@ -30,5 +30,15 @@ app.listen(port, () => {
 
 // Just to ping!
 bot.on('message', msg => {
-  bot.sendMessage(msg.chat.id, 'I am alive!');
+  bot.sendMessage(msg.chat.id, 'I am alive!1');
+});
+
+// random pic
+bot.onText(/\/sendpic/, (msg) => {
+	bot.sendPhoto(msg.chat.id,"https://source.unsplash.com/random" );   
+});
+
+// help
+bot.onText(/\/start/, (msg) => {
+	bot.sendMessage(msg.chat.id, '/start\n/sendpic');  
 });
