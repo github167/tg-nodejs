@@ -30,7 +30,13 @@ app.listen(port, () => {
 
 // Just to ping!
 bot.on('message', msg => {
-  bot.sendMessage(msg.chat.id, 'I am alive!1');
+  var message = msg.text+''
+  bot.sendMessage(msg.chat.id, '<i>I am alive!</i> '+ message, {parse_mode : "HTML"});
+  bot.sendLocation(msg.chat.id,22.2958231,114.1712396);
+  var bye = "bye";
+  if (message.toLowerCase().includes(bye)) {
+    bot.sendMessage(msg.chat.id, "Have a nice day " + msg.from.first_name); 
+  }
 });
 
 // random pic
@@ -40,5 +46,6 @@ bot.onText(/\/sendpic/, (msg) => {
 
 // help
 bot.onText(/\/start/, (msg) => {
-	bot.sendMessage(msg.chat.id, '/start\n/sendpic');  
+	bot.sendMessage(msg.chat.id, '/start\n/sendpic\nbye');  
 });
+
