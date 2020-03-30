@@ -35,8 +35,8 @@ app.listen(port, () => {
   console.log(`Express server is listening on ${port}`);
 });
 
-// Just to ping!
-/*
+// Just to ping again!
+
 bot.on('message', msg => {
   var message = msg.text+''
   bot.sendMessage(msg.chat.id, '<i>Generic echo:</i> '+ message, {parse_mode : "HTML"});
@@ -46,7 +46,7 @@ bot.on('message', msg => {
     bot.sendMessage(msg.chat.id, "Have a nice day " + msg.from.first_name); 
   }
 });
-*/
+
 
 // random pic
 bot.onText(/\/sendpic/, (msg) => {
