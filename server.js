@@ -35,7 +35,7 @@ app.listen(port, () => {
   console.log(`Express server is listening on ${port}`);
 });
 
-// Just to ping!
+// Just to ping again!
 
 bot.on('message', msg => {
   var message = msg.text+''
