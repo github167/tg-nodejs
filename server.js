@@ -5,6 +5,7 @@ const port = process.env.PORT;
 const TelegramBot = require('node-telegram-bot-api');
 const express = require('express');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 // No need to pass any parameters as we will handle the updates with Express
 const bot = new TelegramBot(TOKEN);
@@ -16,6 +17,12 @@ const app = express();
 
 // parse the updates to JSON
 app.use(bodyParser.json());
+
+// Render the HTML game
+app.get('/', function requestListener(req, res) {
+  res.sendFile(path.join(__dirname, 'game.html'));
+});
+
 
 // We are receiving updates at the route below!
 app.post(`/bot${TOKEN}`, (req, res) => {
@@ -29,15 +36,17 @@ app.listen(port, () => {
 });
 
 // Just to ping!
+/*
 bot.on('message', msg => {
   var message = msg.text+''
-  bot.sendMessage(msg.chat.id, '<i>I am alive!</i> '+ message, {parse_mode : "HTML"});
+  bot.sendMessage(msg.chat.id, '<i>Generic echo:</i> '+ message, {parse_mode : "HTML"});
   bot.sendLocation(msg.chat.id,22.2958231,114.1712396);
   var bye = "bye";
   if (message.toLowerCase().includes(bye)) {
     bot.sendMessage(msg.chat.id, "Have a nice day " + msg.from.first_name); 
   }
 });
+*/
 
 // random pic
 bot.onText(/\/sendpic/, (msg) => {
@@ -46,6 +55,10 @@ bot.onText(/\/sendpic/, (msg) => {
 
 // help
 bot.onText(/\/start/, (msg) => {
-	bot.sendMessage(msg.chat.id, '/start\n/sendpic\nbye');  
+	bot.sendMessage(msg.chat.id, '/start\n/sendpic\nbye\nany message');  
 });
 
+// Matches /start
+bot.onText(/\/sxyz/, function onPhotoText(msg) {
+  bot.sendGame(msg.chat.id, "aaa");
+});
